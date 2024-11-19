@@ -1,4 +1,4 @@
-# Terraform Vault module PKI
+# Hashicorp Vault as Private Certificate Authority
 
 This Terraform module create a root and intermediate CA to generate X.509 certificates on demand.  
 
@@ -6,7 +6,7 @@ This Terraform module create a root and intermediate CA to generate X.509 certif
 
 ```hcl
 module "hashicorp_dot_com" {
-  source            = "terraform-vault-modules/pki"
+  source            = "jeremychauvet/private-certificate-authority/vault"
   
   root_domain_name  = "hashicorp.com"
   vault_cluster_url = "https://vault.hashicorp.com"
