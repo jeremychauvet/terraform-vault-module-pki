@@ -60,6 +60,7 @@ variable "certificates" {
   description = "List of certificates to manage."
   type = list(object({
     name              = string
+    do_not_append_root_domain_name = optional(bool)
     ttl_in_seconds    = number
     revoke_on_destroy = bool
   }))

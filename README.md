@@ -37,27 +37,28 @@ module "hashicorp_dot_com" {
 
   certificates = [
     {
-      name              = "prometheus"
+      name              = "prometheus" # Will be: prometheus.hashicorp.com
       ttl_in_seconds    = 2592000 # 30 days
       revoke_on_destroy = true
     },
     {
-      name              = "grafana"
+      name              = "grafana" # Will be: grafana.hashicorp.com
       ttl_in_seconds    = 2592000 # 30 days
       revoke_on_destroy = true
     },
     {
-      name              = "consul"
-      ttl_in_seconds    = 604800 # 7 days
-      revoke_on_destroy = true
+      name                           = "server.dc1.consul" # Will be: server.dc1.consul
+      do_not_append_root_domain_name = true
+      ttl_in_seconds                 = 604800 # 7 days
+      revoke_on_destroy              = true
     },
     {
-      name              = "jira"
+      name              = "jira"  # Will be: jira.hashicorp.com
       ttl_in_seconds    = 3888000 # 45 days
       revoke_on_destroy = true
     },
     {
-      name              = "confluence"
+      name              = "confluence" # Will be: confluence.hashicorp.com
       ttl_in_seconds    = 3888000 # 45 days
       revoke_on_destroy = true
     }

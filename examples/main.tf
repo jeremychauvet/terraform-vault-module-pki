@@ -39,9 +39,10 @@ module "hashicorp_dot_com" {
       revoke_on_destroy = true
     },
     {
-      name              = "consul"
-      ttl_in_seconds    = 604800 # 7 days
-      revoke_on_destroy = true
+      name                           = "server.dc1.consul" # Will be: server.dc1.consul
+      do_not_append_root_domain_name = true
+      ttl_in_seconds                 = 604800 # 7 days
+      revoke_on_destroy              = true
     },
     {
       name              = "jira"
