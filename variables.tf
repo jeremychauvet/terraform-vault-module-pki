@@ -30,38 +30,40 @@ variable "issuer" {
 variable "configuration" {
   type = object({
     root = object({
-      certificate_default_lease_ttl_seconds = number
-      certificate_max_lease_ttl_seconds    = number
+      certificate_default_lease_ttl_seconds      = number
+      certificate_max_lease_ttl_seconds          = number
       certificate_authority_validity_ttl_seconds = number
     }),
     intermediate = object({
-      certificate_default_lease_ttl_seconds = number
-      certificate_max_lease_ttl_seconds    = number
+      certificate_default_lease_ttl_seconds      = number
+      certificate_max_lease_ttl_seconds          = number
       certificate_authority_validity_ttl_seconds = number
     })
+    allowed_domains = list(string)
   })
 
   # Default values match the original configuration
   default = {
     root = {
-      certificate_default_lease_ttl_seconds = 315360000 # seconds (10 years)
-      certificate_max_lease_ttl_seconds    = 315360000 # seconds (10 years)
+      certificate_default_lease_ttl_seconds      = 315360000 # seconds (10 years)
+      certificate_max_lease_ttl_seconds          = 315360000 # seconds (10 years)
       certificate_authority_validity_ttl_seconds = 630720000 # seconds (20 years)
     },
     intermediate = {
-      certificate_default_lease_ttl_seconds = 7776000  # seconds (90 days)
-      certificate_max_lease_ttl_seconds    = 10368000 # seconds (120 days)
+      certificate_default_lease_ttl_seconds      = 7776000  # seconds (90 days)
+      certificate_max_lease_ttl_seconds          = 10368000 # seconds (120 days)
       certificate_authority_validity_ttl_seconds = 31536000 # seconds (1 year)
-    }
+    },
+    allowed_domains = ["consul-datacenter-amon"]
   }
 }
 
 variable "certificates" {
   description = "List of certificates to manage."
   type = list(object({
-    name              = string
+    name                           = string
     do_not_append_root_domain_name = optional(bool)
-    ttl_in_seconds    = number
-    revoke_on_destroy = bool
+    ttl_in_seconds                 = number
+    revoke_on_destroy              = bool
   }))
 }
